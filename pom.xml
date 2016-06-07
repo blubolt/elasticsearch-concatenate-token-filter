@@ -18,8 +18,8 @@
 	</licenses>
 	<properties>
 		<elasticsearch.version>2.2.0</elasticsearch.version>
-    <elasticsearch.assembly.descriptor>${project.basedir}/src/main/assemblies/plugin.xml</elasticsearch.assembly.descriptor>
-    <elasticsearch.plugin.classname>org.elasticsearch.index.analysis.concatenate.ConcatenatePlugin</elasticsearch.plugin.classname>
+		<elasticsearch.assembly.descriptor>${project.basedir}/src/main/assemblies/plugin.xml</elasticsearch.assembly.descriptor>
+		<elasticsearch.plugin.classname>org.elasticsearch.index.analysis.concatenate.ConcatenatePlugin</elasticsearch.plugin.classname>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<build>
@@ -37,9 +37,9 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.2</version>
 				<configuration>
-				<compilerArgs>
-    <arg>-Xlint:deprecation</arg>
-  </compilerArgs>
+					<compilerArgs>
+						<arg>-Xlint:deprecation</arg>
+					</compilerArgs>
 					<source>1.7</source>
 					<target>1.7</target>
 				</configuration>
