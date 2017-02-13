@@ -8,7 +8,8 @@ import org.apache.lucene.util.Version;
 import org.elasticsearch.common.inject.assistedinject.Assisted;
 import org.elasticsearch.common.inject.Inject;
 import org.elasticsearch.common.settings.Settings;
-import org.elasticsearch.index.Index;
+import org.elasticsearch.env.Environment;
+import org.elasticsearch.index.IndexSettings;
 
 public class ConcatenateTokenFilterFactory extends AbstractTokenFilterFactory
 {
@@ -16,9 +17,9 @@ public class ConcatenateTokenFilterFactory extends AbstractTokenFilterFactory
 	private int incrementGap = 100;
 
 	@Inject 
-	public ConcatenateTokenFilterFactory(Index index, Settings indexSettings, @Assisted String name, @Assisted Settings settings)
+	public ConcatenateTokenFilterFactory(IndexSettings indexSettings, Environment env, @Assisted String name, @Assisted Settings settings)
 	{
-		super(index, indexSettings, name, settings);
+		super(indexSettings, name, settings);
 		// The token_separator is defined in the ES configuration file
 		tokenSeparator = settings.get("token_separator");
 		incrementGap = settings.getAsInt("increment_gap", 100);
@@ -27,6 +28,6 @@ public class ConcatenateTokenFilterFactory extends AbstractTokenFilterFactory
 	@Override 
 	public TokenStream create(TokenStream tokenStream)
 	{
-		return new ConcatenateFilter(Version.LATEST, tokenStream, tokenSeparator, incrementGap);
+		return new ConcatenateFilter(tokenStream, tokenSeparator, incrementGap);
 	}
 }

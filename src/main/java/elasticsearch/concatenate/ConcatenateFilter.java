@@ -7,7 +7,6 @@ import org.apache.lucene.analysis.tokenattributes.PositionIncrementAttribute;
 import org.apache.lucene.analysis.TokenFilter;
 import org.apache.lucene.analysis.TokenStream;
 import org.apache.lucene.util.AttributeSource;
-import org.apache.lucene.util.Version;
 
 public final class ConcatenateFilter extends TokenFilter
 {
@@ -21,18 +20,11 @@ public final class ConcatenateFilter extends TokenFilter
 	private AttributeSource.State previousState = null;
 	private boolean recheckPrevious = false;
 
-	public ConcatenateFilter(Version matchVersion, TokenStream input, String tokenSeparator, int incrementGap)
+	public ConcatenateFilter(TokenStream input, String tokenSeparator, int incrementGap)
 	{
 		super(input);
 		this.tokenSeparator = tokenSeparator != null ? tokenSeparator : DEFAULT_TOKEN_SEPARATOR;
 		this.incrementGap = incrementGap;
-	}
-
-	public ConcatenateFilter(Version matchVersion, TokenStream input, String tokenSeparator)
-	{
-		super(input);
-		this.tokenSeparator = tokenSeparator != null ? tokenSeparator : DEFAULT_TOKEN_SEPARATOR;
-		this.incrementGap = 100;
 	}
 
 	@Override
